@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: what-to-eat-server
+  profiles:
+    active: '@profiles.active@'
+  redis:
+    database: 1
+    host: 127.0.0.1
+    port: 6379
+    timeout: 5000
+    jedis:
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+        max-wait: -1
+
+mybatis-plus:
+  mapper-locations: classpath:/mybatis/*.xml
+
+weixin:
+  appId: wx09a02918f1e55b37
+  appSecret: 142a185e5ed2a12c6deb8e19be4223af
