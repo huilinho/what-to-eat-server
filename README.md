@@ -8,6 +8,6 @@
 ## 项目框架
 * scode-commons 基础工具类库
 * scode-commons-db DAO层封装类, 因用到MyBatis-Plus，暂只有自定义的代码生成
-* astro-air-server 本项目WEB服务
+* what-to-eat-server 本项目WEB服务
 
 
