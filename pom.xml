@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>whatToEat</artifactId>
+    <artifactId>what-to-eat</artifactId>
     <groupId>com.what.to.eat</groupId>
     <version>0.9.5</version>
     <modules>
