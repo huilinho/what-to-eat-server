@@ -9,6 +9,7 @@ import com.what.to.eat.server.service.AdminService;
 import com.what.to.eat.server.vaildate.UpdateValid;
 import com.what.to.eat.server.web.AdminWebContext;
 import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import net.scode.commons.core.R;
 import net.scode.commons.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
  * @version 1.0
  * @date 2020/11/1 23:21
  */
+@Slf4j
 @Api(tags = {"管理员接口"})
 @RestController
 @RequestMapping(value = "/admapi/admin")
