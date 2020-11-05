@@ -1,5 +1,6 @@
 package com.what.to.eat.server;
 
+import lombok.extern.slf4j.Slf4j;
 import net.scode.commons.db.generator.AutoGenerator;
 import net.scode.commons.db.generator.GeneratorConfig;
 import org.junit.Test;
@@ -16,6 +17,7 @@ import javax.sql.DataSource;
  *
  * @author
  */
+@Slf4j
 @RunWith(SpringRunner.class)
 @ActiveProfiles("dev")
 @SpringBootTest
@@ -38,8 +40,9 @@ public class AutoGeneratorTest {
 
         AutoGenerator auto = new AutoGenerator(dataSource);
 //         auto.generate(config,"user","User",true);
-        auto.generate(config,"admin","Admin",true);
-
+//         auto.generate(config,"admin","Admin",true);
+//         auto.generate(config,"appraisal","Appraisal",true);
+        auto.generate(config,"user_session","User_session",true);
     }
 
 }
