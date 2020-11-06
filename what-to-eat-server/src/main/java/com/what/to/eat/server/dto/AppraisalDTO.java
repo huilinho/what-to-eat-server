@@ -29,7 +29,7 @@ public class AppraisalDTO {
     public Appraisal toAppraisal() {
         Appraisal appraisal = new Appraisal();
         BeanUtil.copyProperties(this, appraisal);
-        return appraisal;
+        return  appraisal;
     }
 
 }

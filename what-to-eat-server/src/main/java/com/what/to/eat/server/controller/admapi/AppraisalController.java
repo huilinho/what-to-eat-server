@@ -64,7 +64,7 @@ public class AppraisalController {
     public R list(@RequestParam(required = false, defaultValue = "") String keywords, Page page) {
         QueryWrapper<Appraisal> queryWrapper = new QueryWrapper<>();
         if (StringUtil.isNotEmpty(keywords)) {
-            //搜索关键字可以是菜的id
+            //搜索关键字可以是评论里出现的字
             queryWrapper.and (i -> i.like("appraisal", keywords));
         }
         //搜索结果降序排列

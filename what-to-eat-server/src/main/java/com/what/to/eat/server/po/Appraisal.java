@@ -35,7 +35,7 @@ public class Appraisal {
     private int userId;
 
     /**
-     * 菜式id
+     *  菜式id
      */
     @ApiModelProperty(value = "菜式id", dataType = "int")
     @TableField("`dishes_id`")
