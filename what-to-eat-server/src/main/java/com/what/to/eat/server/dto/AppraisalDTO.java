@@ -1,11 +1,17 @@
 package com.what.to.eat.server.dto;
 
-
+import cn.hutool.core.bean.BeanUtil;
 import com.what.to.eat.server.po.Appraisal;
 import lombok.Data;
-import org.springframework.beans.BeanUtils;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+/**
+ * @Author  WangShuoJun
+ * @Data 2020/11/5 22:25
+ * @version 1.0
+ */
 
 @Data
 public class AppraisalDTO {
@@ -17,11 +23,12 @@ public class AppraisalDTO {
     @NotNull
     private int dishes_id;
 
+    @NotBlank(message = "请输入评价")
     private String appraisal;
 
     public Appraisal toAppraisal() {
         Appraisal appraisal = new Appraisal();
-        BeanUtils.copyProperties("this",appraisal);
+        BeanUtil.copyProperties(this, appraisal);
         return appraisal;
     }
 

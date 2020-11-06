@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -52,6 +53,7 @@ public class Appraisal {
      */
     @ApiModelProperty(value = "创建时间", dataType = "java.util.Date")
     @TableField("`create_time`")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", timezone = "GMT+8")
     private java.util.Date createTime;
 
 }
