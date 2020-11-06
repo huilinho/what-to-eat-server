@@ -45,12 +45,22 @@ public class UserAdminController {
         return R.data(pageData);
     }
 
-    @PutMapping("/{id}")
-    public R delete(@PathVariable Integer id) {
+    //封锁用户
+    @PutMapping("/block/{id}")
+    public R block(@PathVariable Integer id) {
         User user = userService.getById(id);
         user.setDataStatus(DataStatus.DELETE.getValue());
         boolean temp = user.getDataStatus()== DataStatus.DELETE.getValue();
         return temp ? R.ok("用户封锁成功") : R.error("用户封锁失败");
+    }
+
+    //恢复用户
+    @PutMapping("/restore/{id}")
+    public R restore(@PathVariable Integer id) {
+        User user = userService.getById(id);
+        user.setDataStatus(DataStatus.NORMAL.getValue());
+        boolean temp = user.getDataStatus()== DataStatus.NORMAL.getValue();
+        return temp ? R.ok("用户恢复成功") : R.error("用户恢复失败");
     }
 
 }
