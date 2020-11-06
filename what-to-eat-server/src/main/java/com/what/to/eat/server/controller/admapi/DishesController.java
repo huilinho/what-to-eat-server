@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Version 1.0
  */
 @Slf4j
-@Api(tags = {"后台管理菜式接口"})
+@Api(tags = {"菜式管理接口"})
 @RestController
 @RequestMapping(value = "/admapi/dishes")
 public class DishesController {

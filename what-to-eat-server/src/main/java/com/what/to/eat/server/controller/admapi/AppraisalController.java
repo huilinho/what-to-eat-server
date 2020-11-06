@@ -18,7 +18,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@Api(tags = {"后台管理评价接口"})
+@Api(tags = {"评价管理接口"})
 @RestController
 @RequestMapping(value = "/admapi/appraisal")
 
