@@ -1,8 +1,9 @@
 package com.what.to.eat.server.dto;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.what.to.eat.server.po.Dishes;
 import lombok.Data;
-import org.springframework.beans.BeanUtils;
+
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -25,9 +26,6 @@ public class DishesDto {
     @NotNull
     private int typeId;
 
-
-    private String commentId;
-
     private String cover;
 
     private int like;
@@ -36,7 +34,7 @@ public class DishesDto {
 
     public Dishes toDishes() {
       Dishes dishes = new Dishes();
-      BeanUtils.copyProperties("this", dishes);
+      BeanUtil.copyProperties(this, dishes);
       return dishes;
     }
 }

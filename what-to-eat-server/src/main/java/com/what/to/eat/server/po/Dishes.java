@@ -4,14 +4,15 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
  * 表[dishes]对应实体类
- * 
- * @author auto 2020年11月05日 
+ *
+ * @author auto 2020年11月05日
  */
 @Data
 @TableName(value = "`dishes`")
@@ -48,25 +49,11 @@ public class Dishes {
     private int typeId;
 
     /**
-     * 该菜式对应的所有评价id
-     */
-    @ApiModelProperty(value = "该菜式对应的所有评价id", dataType = "String")
-    @TableField("`comment_id`")
-    private String commentId;
-
-    /**
      * 菜式图片路径
      */
     @ApiModelProperty(value = "菜式图片路径", dataType = "String")
     @TableField("`cover`")
     private String cover;
-
-    /**
-     * 创建时间
-     */
-    @ApiModelProperty(value = "创建时间", dataType = "java.util.Date")
-    @TableField("`create_time`")
-    private java.util.Date createTime;
 
     /**
      * 点赞数
@@ -81,5 +68,13 @@ public class Dishes {
     @ApiModelProperty(value = "踩数", dataType = "int")
     @TableField("`hate`")
     private int hate;
+
+  /**
+   * 创建时间
+   */
+  @ApiModelProperty(value = "创建时间", dataType = "java.util.Date")
+  @TableField("`create_time`")
+  @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone="GMT+8")
+  private java.util.Date createTime;
 
 }
