@@ -1,5 +1,6 @@
 package com.what.to.eat.server.controller.admapi;
 
+import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -34,7 +35,6 @@ public class AdminController {
     public R info() {
         int userId = AdminWebContext.getUserId();
         Admin admin = adminService.getById(userId);
-        admin.setPassword(null);
         return R.data(admin);
     }
 
@@ -45,8 +45,6 @@ public class AdminController {
             //搜索关键字可以是手机号或者用户名
             queryWrapper.and(a -> a.or(q -> q.like("mobile", keywords)).or(q -> q.like("username", keywords)));
         }
-          //搜索结果降序排列
-        queryWrapper.orderByDesc("id");
         Page pageData = adminService.page(page, queryWrapper);
         return R.data(pageData);
     }
@@ -78,6 +76,7 @@ public class AdminController {
     @PostMapping("/")
     public R add(@Validated @RequestBody AdminDTO adminDTO) {
         Admin admin = adminDTO.toAdmin();
+        admin.setPassword(SecureUtil.md5(admin.getPassword())); //将密码md5加密
         boolean temp = adminService.save(admin);
         return temp ? R.ok("添加成功") : R.error("添加失败");
     }

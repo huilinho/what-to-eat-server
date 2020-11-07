@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Version 1.0
  */
 @Slf4j
-@Api(tags = {"后台管理收藏接口"})
+@Api(tags = {"收藏管理接口"})
 @RestController
 @RequestMapping(value = "/admapi/collection")
 public class CollectionController {
