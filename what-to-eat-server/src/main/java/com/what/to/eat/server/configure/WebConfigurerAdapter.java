@@ -42,7 +42,7 @@ public class WebConfigurerAdapter extends WebMvcConfigurationSupport {
         //管理后台拦截
         registry.addInterceptor(adminServiceInterceptor()).addPathPatterns("/admapi/**").excludePathPatterns("/admapi/login");
         //小程序接口拦截
-        registry.addInterceptor(webServiceInterceptor()).addPathPatterns("/api/**");
+//        registry.addInterceptor(webServiceInterceptor()).addPathPatterns("/api/**");
     }
 
 
@@ -56,6 +56,7 @@ public class WebConfigurerAdapter extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
         registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+        registry.addResourceHandler("/upload/**").addResourceLocations("file:" + appConfig.getUploadBasePath());
         super.addResourceHandlers(registry);
     }
 

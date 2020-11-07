@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 
 /**
  * User_session对应Service
- * 
- * @author auto 2020年11月05日 
+ *
+ * @author auto 2020年11月05日
  */
 public interface User_sessionService extends IService<User_session> {
 
+    String getSessionKeyByOpenid(String openid);
+
+    void saveSessionKey(String openid, String sessionKey);
 }
