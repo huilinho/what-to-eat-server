@@ -18,10 +18,10 @@ public class AppraisalDTO {
     private int id;
 
     @NotNull
-    private int user_id;
+    private int userId;
 
     @NotNull
-    private int dishes_id;
+    private int dishesId;
 
     @NotBlank(message = "请输入评价")
     private String appraisal;

@@ -11,8 +11,8 @@ import lombok.Data;
 
 /**
  * 表[appraisal]对应实体类
- * 
- * @author auto 2020年11月05日 
+ *
+ * @author auto 2020年11月05日
  */
 @Data
 @TableName(value = "`appraisal`")
@@ -32,14 +32,14 @@ public class Appraisal {
      */
     @ApiModelProperty(value = "用户id", dataType = "int")
     @TableField("`user_id`")
-    private int user_id;
+    private int userId;
 
     /**
      *  菜式id
      */
     @ApiModelProperty(value = "菜式id", dataType = "int")
     @TableField("`dishes_id`")
-    private int dishes_id;
+    private int dishesId;
 
     /**
      * 评价

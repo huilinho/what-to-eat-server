@@ -26,31 +26,13 @@ public class AppraisalController {
     @Autowired
     AppraisalService appraisalService;
 
-    @PostMapping("/")
-    public R add(@Validated @RequestBody AppraisalDTO appraisalDTO){
-        Appraisal appraisal = appraisalDTO.toAppraisal();
-        boolean temp = appraisalService.save(appraisal);
-        return temp ? R.ok("添加成功") : R.error("添加失败");
-    }
-
 
     @DeleteMapping("/{id}")
     public R delete(@PathVariable Integer id){
         boolean temp = appraisalService.removeById(id);
         return temp ? R.ok("删除成功") : R.error("删除失败");
     }
-
-    @PutMapping(value = "/")
-    public R update(@Validated(UpdateValid.class) @RequestBody AppraisalDTO appraisalDTO){
-        if (appraisalDTO.getId() <= 0){
-            return R.error("修改失败，id不能为空");
-        }
-        Appraisal appraisal = appraisalDTO.toAppraisal();
-        UpdateWrapper<Appraisal> updateWrapper =new UpdateWrapper<>();
-        updateWrapper.eq("id",appraisalDTO.getId());
-        boolean temp = appraisalService.update(appraisal,updateWrapper);
-        return temp ? R.ok("修改成功") : R.error("修改失败");
-    }
+    
 
     @GetMapping(value = "/{id}")
     public R getInfo(@PathVariable Integer id){
