@@ -1,5 +1,6 @@
 package com.what.to.eat.server;
 
+import com.sun.xml.internal.ws.api.message.Attachment;
 import lombok.extern.slf4j.Slf4j;
 import net.scode.commons.db.generator.AutoGenerator;
 import net.scode.commons.db.generator.GeneratorConfig;
@@ -42,7 +43,8 @@ public class AutoGeneratorTest {
 //         auto.generate(config,"user","User",true);
 //         auto.generate(config,"admin","Admin",true);
 //         auto.generate(config,"appraisal","Appraisal",true);
-        auto.generate(config,"user_session","User_session",true);
+//        auto.generate(config,"user_session","User_session",true);
+//          auto.generate(config,"attachment","Attachment",true);
     }
 
 }

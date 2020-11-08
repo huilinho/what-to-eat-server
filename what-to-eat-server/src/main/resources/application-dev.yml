@@ -20,9 +20,9 @@ spring:
     password:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/what_to_eat?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/what_to_eat?useUnicode=true&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
     username: root
-    password: 962464
+    password: admin
     druid:
       initial-size: 2
       min-idle: 2
@@ -55,6 +55,11 @@ swagger:
     username: whattoeat
     password: whattoeat
 
+what-to-eat:
+  # 默认上传根路径
+  upload-base-path: E:\upload\
+  # 图片访问根路径
+  upload-base-url: http://localhost:${server.port}/upload/
 
 #jsontoken
 jwt:

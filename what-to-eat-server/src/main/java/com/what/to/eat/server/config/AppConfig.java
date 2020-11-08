@@ -14,6 +14,15 @@ import org.springframework.stereotype.Component;
 public class AppConfig {
 
     /**
+     * 上传地址配置
+     */
+    @Value("${what-to-eat.upload-base-path}")
+    private String uploadBasePath;
+
+    @Value("${what-to-eat.upload-base-url}")
+    private String uploadBaseUrl;
+
+    /**
      * 环境
      */
     @Value("${spring.profiles.active}")
