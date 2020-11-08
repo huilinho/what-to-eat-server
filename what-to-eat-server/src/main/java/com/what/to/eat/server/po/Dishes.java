@@ -62,13 +62,6 @@ public class Dishes {
     @TableField("`like`")
     private int like;
 
-    /**
-     * 踩数
-     */
-    @ApiModelProperty(value = "踩数", dataType = "int")
-    @TableField("`hate`")
-    private int hate;
-
   /**
    * 创建时间
    */
