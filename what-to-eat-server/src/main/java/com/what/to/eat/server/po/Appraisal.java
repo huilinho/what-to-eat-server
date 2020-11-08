@@ -32,14 +32,14 @@ public class Appraisal {
      */
     @ApiModelProperty(value = "用户id", dataType = "int")
     @TableField("`user_id`")
-    private int userId;
+    private int user_id;
 
     /**
      *  菜式id
      */
     @ApiModelProperty(value = "菜式id", dataType = "int")
     @TableField("`dishes_id`")
-    private int dishesId;
+    private int dishes_id;
 
     /**
      * 评价
