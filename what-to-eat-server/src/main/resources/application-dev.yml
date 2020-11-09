@@ -20,9 +20,9 @@ spring:
     password:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/what_to_eat?useUnicode=true&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/what_to_eat?useUnicode=true&autoReconnect=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
     username: root
-    password: admin
+    password: 962464
     druid:
       initial-size: 2
       min-idle: 2

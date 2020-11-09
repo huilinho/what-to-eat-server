@@ -28,7 +28,7 @@ public class DishesDTO {
 
     private String cover;
 
-    private int like;
+    private int support;
 
 
     public Dishes toDishes() {

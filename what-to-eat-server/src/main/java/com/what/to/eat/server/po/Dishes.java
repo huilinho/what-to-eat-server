@@ -59,8 +59,8 @@ public class Dishes {
      * 点赞数
      */
     @ApiModelProperty(value = "点赞数", dataType = "int")
-    @TableField("`like`")
-    private int like;
+    @TableField("`support`")
+    private int support;
 
   /**
    * 创建时间
