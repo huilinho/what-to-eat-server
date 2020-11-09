@@ -46,6 +46,7 @@ public class AutoGeneratorTest {
 //        auto.generate(config,"user_session","User_session",true);
 //          auto.generate(config,"attachment","Attachment",true);
 //        auto.generate(config,"window","Window",true);
+//          auto.generate(config,"type","Type",true);
     }
 
 }
