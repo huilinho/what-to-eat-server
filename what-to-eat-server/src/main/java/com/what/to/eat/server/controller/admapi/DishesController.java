@@ -3,12 +3,11 @@ package com.what.to.eat.server.controller.admapi;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.what.to.eat.server.dto.DishesDto;
+import com.what.to.eat.server.dto.DishesDTO;
 import com.what.to.eat.server.po.Dishes;
 import com.what.to.eat.server.service.DishesService;
 import com.what.to.eat.server.vaildate.UpdateValid;
 import io.swagger.annotations.Api;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import net.scode.commons.core.R;
 import net.scode.commons.util.StringUtil;
@@ -31,7 +30,7 @@ public class DishesController {
   private DishesService dishesService;
 
   @PostMapping("/")
-  public R add(@Validated @RequestBody DishesDto dishesDto) {
+  public R add(@Validated @RequestBody DishesDTO dishesDto) {
     Dishes dishes = dishesDto.toDishes();
     boolean save = dishesService.save(dishes);
     return save ? R.ok("添加成功") : R.error("添加失败");
@@ -44,7 +43,7 @@ public class DishesController {
   }
 
   @PutMapping("/")
-  public R update(@Validated(UpdateValid.class) @RequestBody DishesDto dishesDto) {
+  public R update(@Validated(UpdateValid.class) @RequestBody DishesDTO dishesDto) {
     if (dishesDto.getId() <= 0) {
       return R.error("修改失败，id不能为空");
     }

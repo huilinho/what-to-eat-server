@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * @Version 1.0
  */
 @Data
-public class DishesDto {
+public class DishesDTO {
     private int id;
 
     @NotBlank(message = "请输入菜名")
