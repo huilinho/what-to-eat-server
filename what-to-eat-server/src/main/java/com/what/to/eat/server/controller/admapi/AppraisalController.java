@@ -32,7 +32,7 @@ public class AppraisalController {
         boolean temp = appraisalService.removeById(id);
         return temp ? R.ok("删除成功") : R.error("删除失败");
     }
-    
+
 
     @GetMapping(value = "/{id}")
     public R getInfo(@PathVariable Integer id){
@@ -53,5 +53,7 @@ public class AppraisalController {
         Page pageData = appraisalService.page(page,queryWrapper);
         return R.data(pageData);
     }
+
+
 }
 

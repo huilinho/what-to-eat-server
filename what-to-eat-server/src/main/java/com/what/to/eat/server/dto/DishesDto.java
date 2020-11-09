@@ -30,7 +30,6 @@ public class DishesDto {
 
     private int like;
 
-    private int hate;
 
     public Dishes toDishes() {
       Dishes dishes = new Dishes();
