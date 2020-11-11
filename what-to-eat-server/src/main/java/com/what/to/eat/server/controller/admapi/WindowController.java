@@ -66,12 +66,14 @@ public class WindowController {
     }
 
     @GetMapping(value = "/list")
-    public R getList(@RequestParam(required = false, defaultValue = "") String keywords, Page page) {
+    public R getList(@RequestParam(required = false, defaultValue = "") String keywords,
+                     @RequestParam(required = false, defaultValue = "") String floor,
+                     Page page ) {
         QueryWrapper<Window> queryWrapper = new QueryWrapper<>();
-        if(StringUtil.isNotEmpty(keywords)) {
-            queryWrapper.and(a -> a.like("name", keywords));
+            queryWrapper.eq("canteen",keywords);
+        if(StringUtil.isNotEmpty(floor)){
+            queryWrapper.and(a->a.like("floor",floor).like("canteen",keywords));
         }
-        queryWrapper.orderByDesc("id");
         Page pageDate = windowService.page(page, queryWrapper);
         return R.data(pageDate);
     }
@@ -93,5 +95,6 @@ public class WindowController {
         }
          return R.data(windowPacks);
     }
+
 
 }

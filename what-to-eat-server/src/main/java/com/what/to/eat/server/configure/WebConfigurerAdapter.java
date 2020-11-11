@@ -43,7 +43,7 @@ public class WebConfigurerAdapter extends WebMvcConfigurationSupport {
         registry.addInterceptor(adminServiceInterceptor()).addPathPatterns("/admapi/**").excludePathPatterns("/admapi/login");
         //小程序接口拦截
         registry.addInterceptor(webServiceInterceptor()).addPathPatterns("/api/**").excludePathPatterns("/api/**");
-    }
+}
 
 
     /**

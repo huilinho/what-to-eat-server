@@ -1,8 +1,8 @@
 # Host: 127.0.0.1  (Version: 5.7.11-log)
-# Date: 2020-11-08 23:37:22
+# Date: 2020-11-11 13:04:44
 # Generator: MySQL-Front 5.3  (Build 4.269)
 
-/*!40101 SET NAMES utf8 */;
+
 
 #
 # Structure for table "admin"
@@ -21,7 +21,7 @@ CREATE TABLE `admin` (
   `data_status` tinyint(2) NOT NULL DEFAULT '2' COMMENT '通用状态,2正常,3删除',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_mobile` (`mobile`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='管理员表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
 #
 # Data for table "admin"
@@ -41,13 +41,13 @@ CREATE TABLE `appraisal` (
   `appraisal` text NOT NULL COMMENT '评价',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='评价表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='评价表';
 
 #
 # Data for table "appraisal"
 #
 
-INSERT INTO `appraisal` VALUES (1,1,1,'很难吃，下次不会再去。','2020-11-08 22:32:11');
+INSERT INTO `appraisal` VALUES (1,5,1,'很难吃，下次不会再去。','2020-11-08 22:32:11');
 
 #
 # Structure for table "attachment"
@@ -98,14 +98,34 @@ CREATE TABLE `dishes` (
   `type_id` int(10) NOT NULL DEFAULT '0' COMMENT '种类id',
   `cover` varchar(1000) NOT NULL DEFAULT '' COMMENT '菜式图片路径',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `like` int(10) DEFAULT '0' COMMENT '点赞数',
+  `support` int(10) DEFAULT '0' COMMENT '点赞数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜式表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='菜式表';
 
 #
 # Data for table "dishes"
 #
 
+INSERT INTO `dishes` VALUES (1,'黄焖鸡米饭',1,2,'http://pic1.bbzhi.com/dongwubizhi/shijiegedidongwubizhidisanji/animal_2009_animal_1680_desktop_03_43570_10.jpg','2020-11-09 10:20:40',10);
+
+#
+# Structure for table "support_record"
+#
+
+DROP TABLE IF EXISTS `support_record`;
+CREATE TABLE `support_record` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) DEFAULT '0' COMMENT '点赞用户',
+  `dishes_id` int(10) DEFAULT '0' COMMENT '点赞菜式',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+#
+# Data for table "support_record"
+#
+
+INSERT INTO `support_record` VALUES (13,313,1,'2020-11-11 12:59:16');
 
 #
 # Structure for table "type"
@@ -114,14 +134,15 @@ CREATE TABLE `dishes` (
 DROP TABLE IF EXISTS `type`;
 CREATE TABLE `type` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增id',
-  `name` int(10) NOT NULL DEFAULT '0' COMMENT '种类名称',
+  `name` varchar(30) NOT NULL DEFAULT '0' COMMENT '种类名称',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='种类表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='种类表';
 
 #
 # Data for table "type"
 #
 
+INSERT INTO `type` VALUES (1,'饭/粥'),(2,'面'),(3,'猪肉'),(4,'鸡肉'),(5,'牛肉'),(6,'鱼肉'),(7,'白菜'),(8,'玉米'),(9,'面包');
 
 #
 # Structure for table "user"
@@ -137,12 +158,13 @@ CREATE TABLE `user` (
   `data_status` tinyint(2) NOT NULL DEFAULT '2' COMMENT '通用状态,2正常,3删除',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_openid` (`openid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
 #
 # Data for table "user"
 #
 
+INSERT INTO `user` VALUES (1,'11561sadsa','无名','http://pic1.bbzhi.com/dongwubizhi/shijiegedidongwubizhidisanji/animal_2009_animal_1680_desktop_03_43570_10.jpg','2020-11-09 18:29:14',2),(2,'sdadskj2566','寂静岭','http://pic1.bbzhi.com/dongwubizhi/shijiegedidongwubizhidisanji/animal_2009_animal_1680_desktop_03_43570_10.jpg','2020-11-09 18:30:27',2);
 
 #
 # Structure for table "user_session"
@@ -169,21 +191,21 @@ CREATE TABLE `window` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增id',
   `name` varchar(30) NOT NULL DEFAULT '0' COMMENT '窗口名称',
   `url` varchar(1000) NOT NULL DEFAULT '' COMMENT '窗口图片url',
-  `floor` tinyint(2) DEFAULT '0' COMMENT '饭堂楼层,1：一楼，2：二楼',
+  `floor` int(4) DEFAULT '0' COMMENT '饭堂楼层,1：一楼，2：二楼',
   `canteen` int(4) NOT NULL DEFAULT '0' COMMENT '饭堂，1：一饭；2：二饭；3：三饭；4：四饭',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='窗口表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='窗口表';
 
 #
 # Data for table "window"
 #
 
-INSERT INTO `window` VALUES (1,'自选','https://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E8%87%AA%E9%80%89%E9%A4%90&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&hd=undefined&latest=undefined&copyright=undefined&cs=3688463768,194223188&os=2551242937,1808266533&simid=3355569104,116263238&pn=0&rn=1&di=141790&ln=1489&fr=&fmq=1604849780724_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&objurl=http%3A%2F%2Fi3.s2.dpfile.com%2Fpc%2Fmc%2F874cf03f5f6781a7c9c6b7d580de76b7%2528450c280%2529%2FaD0yODAmaz0vcGMvbWMvODc0Y2YwM2Y1ZjY3ODFhN2M5YzZiN2Q1ODBkZTc2YjcmbG9nbz0wJm09YyZ3PTQ1MA.2535fc133174eacc28553e6688c4dfbe%2Fthumb.j&rpstart=0&rpnum=0&adpicid=0&force=undefined',1,3);
+INSERT INTO `window` VALUES (1,'自选','http://pic1.bbzhi.com/dongwubizhi/shijiegedidongwubizhidisanji/animal_2009_animal_1680_desktop_03_43570_10.jpg',1,3),(2,'小炒','http://pic1.bbzhi.com/dongwubizhi/shijiegedidongwubizhidisanji/animal_2009_animal_1680_desktop_03_43570_10.jpg',2,2),(3,'烧腊','http://pic1.bbzhi.com/dongwubizhi/shijiegedidongwubizhidisanji/animal_2009_animal_1680_desktop_03_43570_10.jpg',1,2);
 # Host: 127.0.0.1  (Version: 5.7.11-log)
-# Date: 2020-11-08 23:37:22
+# Date: 2020-11-11 13:04:44
 # Generator: MySQL-Front 5.3  (Build 4.269)
 
-/*!40101 SET NAMES utf8 */;
+
 
 #
 # Structure for table "admin"
@@ -202,7 +224,7 @@ CREATE TABLE `admin` (
   `data_status` tinyint(2) NOT NULL DEFAULT '2' COMMENT '通用状态,2正常,3删除',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_mobile` (`mobile`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='管理员表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
 #
 # Data for table "admin"
@@ -222,13 +244,13 @@ CREATE TABLE `appraisal` (
   `appraisal` text NOT NULL COMMENT '评价',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='评价表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='评价表';
 
 #
 # Data for table "appraisal"
 #
 
-INSERT INTO `appraisal` VALUES (1,1,1,'很难吃，下次不会再去。','2020-11-08 22:32:11');
+INSERT INTO `appraisal` VALUES (1,5,1,'很难吃，下次不会再去。','2020-11-08 22:32:11');
 
 #
 # Structure for table "attachment"
@@ -279,14 +301,34 @@ CREATE TABLE `dishes` (
   `type_id` int(10) NOT NULL DEFAULT '0' COMMENT '种类id',
   `cover` varchar(1000) NOT NULL DEFAULT '' COMMENT '菜式图片路径',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `like` int(10) DEFAULT '0' COMMENT '点赞数',
+  `support` int(10) DEFAULT '0' COMMENT '点赞数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜式表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='菜式表';
 
 #
 # Data for table "dishes"
 #
 
+INSERT INTO `dishes` VALUES (1,'黄焖鸡米饭',1,2,'http://pic1.bbzhi.com/dongwubizhi/shijiegedidongwubizhidisanji/animal_2009_animal_1680_desktop_03_43570_10.jpg','2020-11-09 10:20:40',10);
+
+#
+# Structure for table "support_record"
+#
+
+DROP TABLE IF EXISTS `support_record`;
+CREATE TABLE `support_record` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) DEFAULT '0' COMMENT '点赞用户',
+  `dishes_id` int(10) DEFAULT '0' COMMENT '点赞菜式',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+#
+# Data for table "support_record"
+#
+
+INSERT INTO `support_record` VALUES (13,313,1,'2020-11-11 12:59:16');
 
 #
 # Structure for table "type"
@@ -295,14 +337,15 @@ CREATE TABLE `dishes` (
 DROP TABLE IF EXISTS `type`;
 CREATE TABLE `type` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增id',
-  `name` int(10) NOT NULL DEFAULT '0' COMMENT '种类名称',
+  `name` varchar(30) NOT NULL DEFAULT '0' COMMENT '种类名称',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='种类表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='种类表';
 
 #
 # Data for table "type"
 #
 
+INSERT INTO `type` VALUES (1,'饭/粥'),(2,'面'),(3,'猪肉'),(4,'鸡肉'),(5,'牛肉'),(6,'鱼肉'),(7,'白菜'),(8,'玉米'),(9,'面包');
 
 #
 # Structure for table "user"
@@ -318,12 +361,13 @@ CREATE TABLE `user` (
   `data_status` tinyint(2) NOT NULL DEFAULT '2' COMMENT '通用状态,2正常,3删除',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_openid` (`openid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
 #
 # Data for table "user"
 #
 
+INSERT INTO `user` VALUES (1,'11561sadsa','无名','http://pic1.bbzhi.com/dongwubizhi/shijiegedidongwubizhidisanji/animal_2009_animal_1680_desktop_03_43570_10.jpg','2020-11-09 18:29:14',2),(2,'sdadskj2566','寂静岭','http://pic1.bbzhi.com/dongwubizhi/shijiegedidongwubizhidisanji/animal_2009_animal_1680_desktop_03_43570_10.jpg','2020-11-09 18:30:27',2);
 
 #
 # Structure for table "user_session"
@@ -350,13 +394,13 @@ CREATE TABLE `window` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增id',
   `name` varchar(30) NOT NULL DEFAULT '0' COMMENT '窗口名称',
   `url` varchar(1000) NOT NULL DEFAULT '' COMMENT '窗口图片url',
-  `floor` tinyint(2) DEFAULT '0' COMMENT '饭堂楼层,1：一楼，2：二楼',
+  `floor` int(4) DEFAULT '0' COMMENT '饭堂楼层,1：一楼，2：二楼',
   `canteen` int(4) NOT NULL DEFAULT '0' COMMENT '饭堂，1：一饭；2：二饭；3：三饭；4：四饭',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='窗口表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='窗口表';
 
 #
 # Data for table "window"
 #
 
-INSERT INTO `window` VALUES (1,'自选','https://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E8%87%AA%E9%80%89%E9%A4%90&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&hd=undefined&latest=undefined&copyright=undefined&cs=3688463768,194223188&os=2551242937,1808266533&simid=3355569104,116263238&pn=0&rn=1&di=141790&ln=1489&fr=&fmq=1604849780724_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&objurl=http%3A%2F%2Fi3.s2.dpfile.com%2Fpc%2Fmc%2F874cf03f5f6781a7c9c6b7d580de76b7%2528450c280%2529%2FaD0yODAmaz0vcGMvbWMvODc0Y2YwM2Y1ZjY3ODFhN2M5YzZiN2Q1ODBkZTc2YjcmbG9nbz0wJm09YyZ3PTQ1MA.2535fc133174eacc28553e6688c4dfbe%2Fthumb.j&rpstart=0&rpnum=0&adpicid=0&force=undefined',1,3);
+INSERT INTO `window` VALUES (1,'自选','http://pic1.bbzhi.com/dongwubizhi/shijiegedidongwubizhidisanji/animal_2009_animal_1680_desktop_03_43570_10.jpg',1,3),(2,'小炒','http://pic1.bbzhi.com/dongwubizhi/shijiegedidongwubizhidisanji/animal_2009_animal_1680_desktop_03_43570_10.jpg',2,2),(3,'烧腊','http://pic1.bbzhi.com/dongwubizhi/shijiegedidongwubizhidisanji/animal_2009_animal_1680_desktop_03_43570_10.jpg',1,2);

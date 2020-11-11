@@ -5,17 +5,13 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.what.to.eat.server.dto.TypeDTO;
 import com.what.to.eat.server.po.Type;
-import com.what.to.eat.server.po.Window;
 import com.what.to.eat.server.service.TypeService;
 import com.what.to.eat.server.vaildate.UpdateValid;
 import com.what.to.eat.server.vo.TypePack;
-import com.what.to.eat.server.vo.WindowPack;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import net.scode.commons.core.R;
 import net.scode.commons.util.StringUtil;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -73,7 +69,6 @@ public class TypeController {
         if(StringUtil.isNotEmpty(keywords)) {
             queryWrapper.and(a -> a.like("name", keywords));
         }
-        queryWrapper.orderByDesc("id");
         Page pageDate = typeService.page(page, queryWrapper);
         return R.data(pageDate);
     }
