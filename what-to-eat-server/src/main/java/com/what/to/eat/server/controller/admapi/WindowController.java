@@ -70,7 +70,7 @@ public class WindowController {
                      @RequestParam(required = false, defaultValue = "") String floor,
                      Page page ) {
         QueryWrapper<Window> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("canteen",keywords);
+            queryWrapper.like("canteen",keywords);
         if(StringUtil.isNotEmpty(floor)){
             queryWrapper.and(a->a.like("floor",floor).like("canteen",keywords));
         }
