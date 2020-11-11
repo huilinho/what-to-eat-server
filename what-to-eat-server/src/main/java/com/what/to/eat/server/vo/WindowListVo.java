@@ -14,6 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 public class WindowListVo {
 
+    private int windowId;
+
     private String windowName;
 
     private String url;
