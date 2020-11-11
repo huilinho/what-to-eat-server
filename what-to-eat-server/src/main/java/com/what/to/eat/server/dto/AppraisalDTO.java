@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class AppraisalDTO {
+
     private int id;
 
     @NotNull

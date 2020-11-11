@@ -9,6 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = {"后台管理用户处理接口"})
 @RestController
 @RequestMapping(value = "/admapi/user_session")
-
 public class User_sessionController {
 }

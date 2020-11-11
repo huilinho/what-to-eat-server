@@ -1,9 +1,7 @@
 package com.what.to.eat.server.controller.api;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.what.to.eat.server.dao.AppraisalDao;
+
 import com.what.to.eat.server.po.Appraisal;
 import com.what.to.eat.server.po.Dishes;
 import com.what.to.eat.server.po.Type;
@@ -14,7 +12,6 @@ import com.what.to.eat.server.vo.DishesVo;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import net.scode.commons.core.R;
-import net.scode.commons.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,11 +41,7 @@ public class DishController {
     @GetMapping("/")
     public R getDishType() {
       List<Type> list = typeService.list();
-      List<String> typeList = new ArrayList<>();
-      for (Type type : list) {
-          typeList.add(type.getName());
-      }
-      return R.data(typeList);
+      return R.data(list);
     }
 
     @GetMapping(value = "/list")

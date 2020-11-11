@@ -10,8 +10,8 @@ import lombok.Data;
 
 /**
  * 表[user]对应实体类
- * 
- * @author auto 2020年11月02日 
+ *
+ * @author auto 2020年11月02日
  */
 @Data
 @TableName(value = "`user`")
@@ -47,12 +47,6 @@ public class User {
     @TableField("`avatar`")
     private String avatar;
 
-    /**
-     * 收藏菜式的id集合(字符串形式存储)
-     */
-    @ApiModelProperty(value = "收藏菜式的id集合(字符串形式存储)", dataType = "String")
-    @TableField("`collections`")
-    private String collections;
 
     /**
      * 创建时间
