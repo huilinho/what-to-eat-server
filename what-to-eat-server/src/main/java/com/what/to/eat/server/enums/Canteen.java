@@ -40,4 +40,14 @@ public enum Canteen {
         this.value = val;
         this.text = txt;
     }
+
+  public static String getCanteen(Integer value) {
+    Canteen[] values = values();
+    for (Canteen canteen : values) {
+      if (canteen.value == value) {
+        return canteen.text;
+      }
+    }
+    return "未知";
+  }
 }

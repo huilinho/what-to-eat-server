@@ -31,4 +31,14 @@ public enum Floor {
         this.value = val;
         this.text = txt;
     }
+
+    public static String getFloor(Integer value) {
+      Floor[] values = values();
+      for (Floor floor : values) {
+        if (floor.value == value) {
+          return floor.text;
+        }
+      }
+      return "未知";
+    }
 }

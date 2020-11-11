@@ -1,24 +1,21 @@
 package com.what.to.eat.server.controller.api;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.what.to.eat.server.bo.AppraisalBo;
 import com.what.to.eat.server.bo.DynamicBo;
-import com.what.to.eat.server.po.Appraisal;
-import com.what.to.eat.server.po.Dishes;
-import com.what.to.eat.server.po.SupportRecord;
-import com.what.to.eat.server.service.AppraisalService;
-import com.what.to.eat.server.service.DishesService;
-import com.what.to.eat.server.service.SupportRecordService;
-import com.what.to.eat.server.service.UserService;
+import com.what.to.eat.server.dto.UserDTO;
+import com.what.to.eat.server.dto.WindowListDTO;
+import com.what.to.eat.server.po.*;
+import com.what.to.eat.server.service.*;
 import com.what.to.eat.server.vo.UserDetailVo;
+import com.what.to.eat.server.vo.WindowListVo;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import net.scode.commons.core.R;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,4 +61,14 @@ public class UserDetailController {
     UserDetailVo userDetailVo = new UserDetailVo(count1, count2, dynamic);
     return R.data(userDetailVo);
   }
+
+  @PutMapping("/")
+  public R updateUser(@Validated @RequestBody UserDTO userDTO) {
+    User user = userDTO.toUser();
+    UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+    updateWrapper.eq("id", user.getId());
+    boolean update = userService.update(user, updateWrapper);
+    return update ? R.data("修改成功") : R.error("修改失败");
+  }
+
 }

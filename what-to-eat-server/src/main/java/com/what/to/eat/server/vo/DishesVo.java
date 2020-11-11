@@ -12,6 +12,8 @@ import lombok.Data;
 @Data
 public class DishesVo {
 
+    private int id;
+
     /*菜式名*/
     private String name;
 
@@ -24,6 +26,6 @@ public class DishesVo {
     /*评论数*/
     private int count;
 
-
+    private String location;
 
 }

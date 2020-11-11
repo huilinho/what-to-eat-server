@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.what.to.eat.server.bo.AppraisalBo;
 import com.what.to.eat.server.dto.AppraisalDTO;
 import com.what.to.eat.server.dto.SupportRecordDTO;
+import com.what.to.eat.server.enums.Canteen;
+import com.what.to.eat.server.enums.Floor;
 import com.what.to.eat.server.po.*;
 import com.what.to.eat.server.service.*;
 import com.what.to.eat.server.vo.DishDetailVo;
@@ -56,7 +58,7 @@ public class DishDetailController {
       String location = null;
       Dishes dish = dishesService.getById(id);
       Window window = windowService.getById(dish.getWindowId());
-      location = window.getFloor() + "." + window.getCanteen() + "." + window.getName();
+      location = Floor.getFloor(window.getFloor()) + "." + Canteen.getCanteen(window.getCanteen()) + "." + window.getName();
       queryWrapper1.eq("dishes_id", id);
       List<Appraisal> list = appraisalService.list(queryWrapper1);
       for (Appraisal appraisal : list) {
