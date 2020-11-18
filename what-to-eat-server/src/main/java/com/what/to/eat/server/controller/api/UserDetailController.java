@@ -43,8 +43,8 @@ public class UserDetailController {
   @Autowired
   private SupportRecordService supportRecordService;
 
-  @GetMapping("/{openid}")
-  public R getDetails(@PathVariable String openid) {
+  @GetMapping("/details")
+  public R getDetails(@RequestParam String openid) {
     QueryWrapper<SupportRecord> queryWrapper1 = new QueryWrapper();
     QueryWrapper<Appraisal> queryWrapper2 = new QueryWrapper();
     QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
