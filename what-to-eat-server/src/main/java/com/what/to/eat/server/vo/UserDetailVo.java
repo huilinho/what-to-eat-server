@@ -15,6 +15,9 @@ import java.util.List;
 @AllArgsConstructor
 public class UserDetailVo {
 
+    /*用户名*/
+    private String name;
+
     /*评价数*/
     private int AppraisalAmount;
 

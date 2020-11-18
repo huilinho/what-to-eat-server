@@ -51,6 +51,7 @@ public class UserDetailController {
     userQueryWrapper.like("openid",openid);
     User user = userService.getOne(userQueryWrapper);
     int userId = user.getId();
+    String name = user.getUsername();
     List<DynamicBo> dynamic = new ArrayList<>();
     queryWrapper1.eq("user_id", userId);
     int count1 = supportRecordService.count(queryWrapper1);
@@ -62,7 +63,7 @@ public class UserDetailController {
       DynamicBo dynamicBo = new DynamicBo(appraisal.getAppraisal(), appraisal.getCreateTime(), dish.getName());
       dynamic.add(dynamicBo);
     }
-    UserDetailVo userDetailVo = new UserDetailVo(count1, count2, dynamic);
+    UserDetailVo userDetailVo = new UserDetailVo(name,count1, count2, dynamic);
     return R.data(userDetailVo);
   }
 
