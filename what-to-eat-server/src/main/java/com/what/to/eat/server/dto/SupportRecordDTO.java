@@ -19,7 +19,6 @@ import lombok.Data;
 @Data
 public class SupportRecordDTO {
 
-    private int id;
 
     private int userId;
 

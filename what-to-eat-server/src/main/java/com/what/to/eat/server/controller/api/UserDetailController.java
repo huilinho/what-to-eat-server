@@ -43,10 +43,14 @@ public class UserDetailController {
   @Autowired
   private SupportRecordService supportRecordService;
 
-  @GetMapping("/{userId}")
-  public R getDetails(@PathVariable int userId) {
+  @GetMapping("/{openid}")
+  public R getDetails(@PathVariable String openid) {
     QueryWrapper<SupportRecord> queryWrapper1 = new QueryWrapper();
     QueryWrapper<Appraisal> queryWrapper2 = new QueryWrapper();
+    QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+    userQueryWrapper.like("openid",openid);
+    User user = userService.getOne(userQueryWrapper);
+    int userId = user.getId();
     List<DynamicBo> dynamic = new ArrayList<>();
     queryWrapper1.eq("user_id", userId);
     int count1 = supportRecordService.count(queryWrapper1);
