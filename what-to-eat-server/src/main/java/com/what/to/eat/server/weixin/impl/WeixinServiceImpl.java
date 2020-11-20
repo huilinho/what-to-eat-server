@@ -106,6 +106,8 @@ public class WeixinServiceImpl implements WeixinService {
             return false;
         }
         String sign = SecureUtil.sha1(rawData + sessionKey);
+        System.out.println(signature);
+        System.out.println(sign);
         return sign.equals(signature);
     }
 

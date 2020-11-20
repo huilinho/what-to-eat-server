@@ -1,5 +1,5 @@
 server:
-  port: 8010
+  port: 8527
 
 spring:
   servlet:
@@ -9,8 +9,8 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/astro_air?useUnicode=true&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
-    username: what_to_eat
-    password: what_to_eat
+    username: root
+    password: Gwh2278511
     druid:
       initial-size: 2
       min-idle: 2
@@ -42,6 +42,12 @@ swagger:
     enable: true
     username: astro
     password: astro!666@
+
+what-to-eat:
+  # 默认上传根路径
+  upload-base-path: /data/page/public/upload/
+  # 图片访问根路径
+  upload-base-url: https://47.110.138.141/public/upload/
 
 #jsontoken
 jwt:
