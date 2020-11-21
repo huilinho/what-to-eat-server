@@ -78,30 +78,17 @@ public class WindowController {
         return R.data(pageDate);
     }
 
-    //根据饭堂和楼层显示窗口
-    @GetMapping(value="/{canteenId}/{floor}")
-    public R windowList(@PathVariable Integer canteenId , @PathVariable Integer floor ){
+    @GetMapping(value="/pack")
+    public R WindowList(){
         List<Window> windowList = windowService.list();
         List<WindowPack> windowPacks = new ArrayList<>();
         for(Window window : windowList){
-            if(window.getCanteen()==canteenId && window.getFloor()==floor) {
-                WindowPack windowPack = new WindowPack();
-                windowPack.setName(window.getName());
-                windowPack.setWindowId(window.getId());
-                windowPacks.add(windowPack);
-            }
-            else{
-                continue;
-            }
+            WindowPack windowPack = new WindowPack();
+            windowPack.setWindowId(window.getId());
+            windowPack.setName(window.getName());
+           windowPacks.add(windowPack);
         }
-         return R.data(windowPacks);
-    }
-
-    //根据饭堂和楼层显示窗口
-    @GetMapping(value="/{id}")
-    public R getWindowNameById(@PathVariable Integer id ){
-        String name = windowService.getById(id).getName();
-        return R.data(name);
+        return R.data(windowPacks);
     }
 
 

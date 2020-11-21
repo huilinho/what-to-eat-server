@@ -1,6 +1,5 @@
 package com.what.to.eat.server;
 
-import com.sun.xml.internal.ws.api.message.Attachment;
 import lombok.extern.slf4j.Slf4j;
 import net.scode.commons.db.generator.AutoGenerator;
 import net.scode.commons.db.generator.GeneratorConfig;
