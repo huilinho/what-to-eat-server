@@ -63,6 +63,7 @@ public class DishDetailController {
       List<Appraisal> list = appraisalService.list(queryWrapper1);
       for (Appraisal appraisal : list) {
         User user = userService.getById(appraisal.getUserId());
+        if(user == null) return R.error("该评论用户不存在！");
         AppraisalBo appraisalBo = new AppraisalBo(user.getId(), user.getUsername(), user.getAvatar(), appraisal.getAppraisal());
         appraisalList.add(appraisalBo);
       }

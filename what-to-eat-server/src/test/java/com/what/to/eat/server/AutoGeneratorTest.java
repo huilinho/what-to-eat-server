@@ -46,6 +46,7 @@ public class AutoGeneratorTest {
 //          auto.generate(config,"attachment","Attachment",true);
 //        auto.generate(config,"window","Window",true);
 //          auto.generate(config,"type","Type",true);
+      auto.generate(config,"support_record","SupportRecord",true);
     }
 
 }

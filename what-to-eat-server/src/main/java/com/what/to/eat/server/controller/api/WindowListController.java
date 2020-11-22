@@ -52,7 +52,9 @@ public class WindowListController {
         for (Dishes dish : list1) {
           dishesList += "、" + dish.getName();
         }
-        WindowListVo windowListVo = new WindowListVo(window.getId(), window.getName(), window.getUrl(), dishesList);
+        WindowListVo windowListVo = new WindowListVo(window.getId(),
+
+          window.getName(), window.getUrl(), dishesList);
         windowList.add(windowListVo);
       }
       return R.data(windowList);
