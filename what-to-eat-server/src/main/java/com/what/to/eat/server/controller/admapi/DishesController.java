@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.what.to.eat.server.dto.DishesDTO;
 import com.what.to.eat.server.po.Dishes;
+import com.what.to.eat.server.po.User;
 import com.what.to.eat.server.service.DishesService;
+import com.what.to.eat.server.service.UserService;
 import com.what.to.eat.server.vaildate.UpdateValid;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,8 @@ import net.scode.commons.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Author DengFaLian
@@ -28,6 +32,9 @@ public class DishesController {
 
   @Autowired
   private DishesService dishesService;
+
+  @Autowired
+  private UserService userService;
 
   @PostMapping("/")
   public R add(@Validated @RequestBody DishesDTO dishesDto) {
@@ -69,5 +76,17 @@ public class DishesController {
     Page pageDate = dishesService.page(page, queryWrapper);
     return R.data(pageDate);
   }
+
+    @GetMapping("/userList")
+    public R getUsers() {
+        List<User> userList = userService.list();
+        return R.data(userList);
+    }
+
+    @GetMapping("/dishesList")
+    public R getDishes(){
+        List<Dishes> dishesList = dishesService.list();
+        return R.data(dishesList);
+    }
 
 }
