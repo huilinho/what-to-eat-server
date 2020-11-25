@@ -17,8 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author DengFaLian
@@ -48,21 +47,36 @@ public class UserDetailController {
     QueryWrapper<SupportRecord> queryWrapper1 = new QueryWrapper();
     QueryWrapper<Appraisal> queryWrapper2 = new QueryWrapper();
     QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-    userQueryWrapper.like("openid",openid);
+    userQueryWrapper.eq("openid",openid);
     User user = userService.getOne(userQueryWrapper);
+    if(user == null)
+        return R.error("该用户不存在");
     int userId = user.getId();
     String name = user.getUsername();
     List<DynamicBo> dynamic = new ArrayList<>();
     queryWrapper1.eq("user_id", userId);
     int count1 = supportRecordService.count(queryWrapper1);
+    List<SupportRecord> list1 = supportRecordService.list(queryWrapper1);
+    for (SupportRecord supportRecord : list1) {
+      Dishes dish = dishesService.getById(supportRecord.getDishesId());
+      DynamicBo dynamicBo = new DynamicBo("点赞", null, supportRecord.getCreateTime(), dish.getName());
+      dynamic.add(dynamicBo);
+    }
     queryWrapper2.eq("user_id", userId);
     int count2 = appraisalService.count(queryWrapper2);
-    List<Appraisal> list = appraisalService.list(queryWrapper2);
-    for (Appraisal appraisal : list) {
+    List<Appraisal> list2 = appraisalService.list(queryWrapper2);
+    for (Appraisal appraisal : list2) {
       Dishes dish = dishesService.getById(appraisal.getDishesId());
       DynamicBo dynamicBo = new DynamicBo(appraisal.getAppraisal(), appraisal.getCreateTime(), dish.getName());
       dynamic.add(dynamicBo);
     }
+    Collections.sort(dynamic, new Comparator<DynamicBo>() {
+      @Override
+      public int compare(DynamicBo o1, DynamicBo o2) {
+        int flag = o2.getCreateTime().compareTo(o1.getCreateTime());
+        return flag;
+      }
+    });
     UserDetailVo userDetailVo = new UserDetailVo(name,count1, count2, dynamic);
     return R.data(userDetailVo);
   }

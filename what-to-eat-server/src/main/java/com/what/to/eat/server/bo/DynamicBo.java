@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @Author DengFaLian
  * @Date 2020/11/11 14:52
@@ -12,7 +14,11 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class DynamicBo {
+
     /*评价*/
+    private String support;
+
+    /*评论*/
     private String appraisal;
 
     /*创建时间*/
@@ -21,4 +27,20 @@ public class DynamicBo {
 
     /*菜式名字*/
     private String dishName;
+
+  public DynamicBo() {
+  }
+
+//  public DynamicBo(int support, Date createTime, String dishName) {
+//    this.support = support;
+//    this.createTime = createTime;
+//    this.dishName = dishName;
+//  }
+
+  public DynamicBo(String appraisal, Date createTime, String dishName) {
+    this.appraisal = appraisal;
+    this.createTime = createTime;
+    this.dishName = dishName;
+  }
+
 }
