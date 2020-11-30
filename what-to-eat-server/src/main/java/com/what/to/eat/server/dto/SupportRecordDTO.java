@@ -20,13 +20,14 @@ import lombok.Data;
 public class SupportRecordDTO {
 
 
-    private int userId;
+    private String openId;
 
     private int dishesId;
 
-  public SupportRecord toSupportRecord() {
+  public SupportRecord toSupportRecord(int userId) {
     SupportRecord supportRecord = new SupportRecord();
-    BeanUtil.copyProperties(this, supportRecord);
+    supportRecord.setUserId(userId);
+    supportRecord.setDishesId(this.dishesId);
     return supportRecord;
   }
 }

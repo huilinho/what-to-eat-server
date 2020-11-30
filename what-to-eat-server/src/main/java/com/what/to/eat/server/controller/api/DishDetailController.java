@@ -3,7 +3,7 @@ package com.what.to.eat.server.controller.api;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.what.to.eat.server.bo.AppraisalBo;
-import com.what.to.eat.server.dto.AppraisalDTO;
+import com.what.to.eat.server.dto.Appraisal2DTO;
 import com.what.to.eat.server.dto.SupportRecordDTO;
 import com.what.to.eat.server.enums.Canteen;
 import com.what.to.eat.server.enums.Floor;
@@ -80,14 +80,20 @@ public class DishDetailController {
       UpdateWrapper<Dishes> updateWrapper = new UpdateWrapper<>();
       updateWrapper.eq("id", dish.getId());
       boolean update = dishesService.update(dish, updateWrapper);
-      SupportRecord supportRecord = supportRecordDto.toSupportRecord();
+      QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+      queryWrapper.eq("openid", supportRecordDto.getOpenId());
+      User user = userService.getOne(queryWrapper);
+      SupportRecord supportRecord = supportRecordDto.toSupportRecord(user.getId());
       boolean save = supportRecordService.save(supportRecord);
       return (update && save) ? R.ok("修改成功") : R.error("修改失败");
     }
 
     @PostMapping("/")
-    public R addAppraisal(@Validated AppraisalDTO appraisalDTO) {
-      Appraisal appraisal = appraisalDTO.toAppraisal();
+    public R addAppraisal(@Validated Appraisal2DTO appraisal2DTO) {
+      QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+      queryWrapper.eq("openid", appraisal2DTO.getOpenId());
+      User user = userService.getOne(queryWrapper);
+      Appraisal appraisal = appraisal2DTO.toAppraisal(user.getId());
       boolean save = appraisalService.save(appraisal);
       return save ? R.ok("添加成功") : R.error("添加失败");
     }
