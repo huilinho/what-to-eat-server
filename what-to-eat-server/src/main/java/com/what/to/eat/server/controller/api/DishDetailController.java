@@ -73,6 +73,23 @@ public class DishDetailController {
       return R.data(dishDetail);
     }
 
+    @PostMapping("/flag")
+    public R getFlag(@RequestBody SupportRecordDTO supportRecordDTO) {
+      QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
+      queryWrapper1.eq("openid", supportRecordDTO.getOpenId());
+      User user = userService.getOne(queryWrapper1);
+      if(user == null) {
+        return R.error("该用户不存在");
+      }
+      QueryWrapper<SupportRecord> queryWrapper2 = new QueryWrapper<>();
+      queryWrapper2.and(a -> a.eq("user_id",user.getId()).and(b -> b.eq("dishes_id", supportRecordDTO.getDishesId())));
+      SupportRecord flag = supportRecordService.getOne(queryWrapper2);
+      if(flag != null)
+        return R.data(true);
+      else
+        return R.data(false);
+    }
+
     @PutMapping("/")
     public R updateSupport(@RequestBody SupportRecordDTO supportRecordDto) {
       Dishes dish = dishesService.getById(supportRecordDto.getDishesId());
@@ -96,5 +113,25 @@ public class DishDetailController {
       Appraisal appraisal = appraisal2DTO.toAppraisal(user.getId());
       boolean save = appraisalService.save(appraisal);
       return save ? R.ok("添加成功") : R.error("添加失败");
+    }
+
+    @DeleteMapping("/delSupport")
+    public R DeleteSupport(SupportRecordDTO supportRecordDTO) {
+      QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
+      queryWrapper1.eq("openid", supportRecordDTO.getOpenId());
+      User user = userService.getOne(queryWrapper1);
+      if(user == null) {
+        return R.error("该用户不存在");
+      }
+      QueryWrapper<SupportRecord> queryWrapper2 = new QueryWrapper<>();
+      queryWrapper2.and(a -> a.eq("user_id",user.getId()).and(b -> b.eq("dishes_id", supportRecordDTO.getDishesId())));
+      boolean remove = supportRecordService.remove(queryWrapper2);
+      Dishes dish = dishesService.getById(supportRecordDTO.getDishesId());
+      if(dish.getSupport() > 0)
+          dish.setSupport(dish.getSupport() - 1);
+      UpdateWrapper<Dishes> updateWrapper = new UpdateWrapper<>();
+      updateWrapper.eq("id", dish.getId());
+      boolean update = dishesService.update(dish, updateWrapper);
+      return (update && remove) ? R.ok("修改成功") : R.error("修改失败");
     }
 }
